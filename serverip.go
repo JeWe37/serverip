@@ -2,8 +2,8 @@ package serverip
 
 import (
 	"context"
-	"net"
 	"fmt"
+	"net"
 	"strconv"
 
 	"github.com/coredns/coredns/request"
@@ -29,7 +29,7 @@ func getSourceIP(destinationIP string) (net.IP, error) {
 		return nil, fmt.Errorf("error looking up route: %v", err)
 	}
 
-    return routes[0].Src, nil
+	return routes[0].Src, nil
 }
 
 // ServeDNS implements the plugin.Handler interface.
@@ -41,9 +41,9 @@ func (si Serverip) ServeDNS(ctx context.Context, w dns.ResponseWriter, r *dns.Ms
 	a.Authoritative = true
 
 	ip, err := getSourceIP(state.IP())
-    if err != nil {
-        return 1, err
-    }
+	if err != nil {
+		return 1, err
+	}
 
 	var rr dns.RR
 
